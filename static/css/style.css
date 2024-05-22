@@ -166,18 +166,18 @@ body {
       .showcase {
         text-align: center;
         margin-top: 40px;
-        font-family: 'roboto', 'mono';
+        font-family: 'bai jamjuree';
       }
 
       .showcase h1 {
         font-size: 40px;
         font-weight: 400;
-        font-family: 'roboto', 'mono';
+        font-family: 'bai jamjuree';
       }
 
       .showcase h1 span.new {
         color: #f2e908;
-        font-family: 'roboto', 'mono';
+        font-family: 'bai jamjuree';
       }
 
       .showcase h1 span.highlight {
@@ -248,10 +248,10 @@ body {
 ul{
     color:#f2e908;
     font-size: 15px;
-    font-family: 'roboto';
+    font-family: 'bai jamjuree';
 }
 
 label[for="password"]{
     font-size: 20px;
-    font-family: 'roboto','mono'; 
+    font-family: 'bai jamjuree'; 
 }

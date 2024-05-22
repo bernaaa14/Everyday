@@ -13,8 +13,8 @@ include 'header.html';
 
 ?>
     <section class="showcase">
-      <h1>LET'S START A <span class="new">NEW</span><br>
-        <span class="highlight">JOURNEY...</span>
+      <h1>LET'S START A <span class="bold-text highlight-text1">NEW</span><br>
+        <span class="bold-text highlight-text2">JOURNEY...</span>
       </h1>
     </section>
     <form class="form">

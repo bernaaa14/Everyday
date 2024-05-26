@@ -7,19 +7,11 @@
     <link rel="stylesheet" href="static/css/style.css">
   </head>
   <body>
-    <header class="header">
-      <div class="logo-container">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18c3b6c15c2fd680223c68073a23fc9a0c2b49a28492dadd3dd7c88b88fb0dd8?apiKey=3955a215049b45728fdd47b5e4eefa70&" alt="Brand logo" class="logo">
-        <div class="brand-name"> Star</div>
-        <div class="brand-name2"> Kingdom</div>
-      </div>
-      <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#explore">Explore</a>
-        <a href="#about-us">About Us</a>
-        <a href="#account">View Account</a>
-      </nav>
-    </header>
+<?php
+    include 'header.html';
+?>
+
+
     <section class="main-container">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
         <div style="display: flex; flex-direction: column; align-items: flex-start;">
@@ -118,7 +110,7 @@
     display: flex;
     justify-content: flex-end;
   ">
-      <button class="diva" type="submit" name="logout" style="
+      <button class="diva" type="submit" name="logout" onclick="window.location.href='welcome.php'" style="
       border-radius: 24px;
       background-color: #f20808;
       color: #fff;

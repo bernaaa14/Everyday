@@ -17,9 +17,10 @@ include 'header.html';
         <span class="bold-text highlight-text2">JOURNEY...</span>
       </h1>
     </section>
-    <form class="form">
+    <form action="signup_validate.php" method="post">
+      <!-- Sign up form -->
       <div class="form-field">
-        <input type="text" id="username" placeholder="Enter your username" />
+        <input type="text" name="username" id="username" placeholder="Enter your username" required/>
       </div>
       <div class="form-field">
         <label for="password">Password must contain:</label>
@@ -28,10 +29,10 @@ include 'header.html';
           <li>At least 1 uppercase letter</li>
           <li>At least 1 special character</li>
         </ul>
-        <input type="password" id="password" placeholder="Enter your password" />
+        <input type="password" name="password" id="password" placeholder="Enter your password" required/>
       </div>
       <div class="form-field">
-        <input type="password" id="reenter-password" placeholder="Re-enter your password" />
+        <input type="password" name="confirm_password" id="reenter-password" placeholder="Re-enter your password" required/>
       </div>
       <button type="submit" class="signup-button">Signup</button>
     </form>

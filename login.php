@@ -14,12 +14,12 @@
       <h1><span class="bold-text highlight-text1">GLAD</span> TO <span class="bold-text highlight-text2">SEE</span> YOU<br>AGAIN
       </h1>
     </section>
-    <form class="form">
+    <form action="login_validate.php" method="post" target="_self">
       <div class="form-field">
-        <input type="text" id="username" placeholder="Enter your username" />
+        <input type="text" id="username" name="username" placeholder="Enter your username" required/>
       </div>
       <div class="form-field">
-        <input type="password" id="password" placeholder="Enter your password" />
+        <input type="password" id="password" name="password" placeholder="Enter your password" required/>
       </div>
       <button type="submit" class="login-button">Login</button>
     </form>

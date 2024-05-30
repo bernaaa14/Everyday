@@ -1,123 +1,216 @@
+<?php
+session_start();
+
+// Check if the logout button is clicked
+if (isset($_POST["logout"])) {
+    // Unset all session variables
+    session_unset();
+    // Destroy the session
+    session_destroy();
+    // Redirect the user to the login page
+    header("Location: login.php");
+    exit();
+}
+
+$greeting = "Hello, Visitor";
+if (isset($_SESSION["username"])) {
+    $greeting =
+        "Hello, " .
+        htmlspecialchars($_SESSION["username"], ENT_QUOTES, "UTF-8");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
-  </head>
-  <body>
-<?php
-    include 'header.html';
-?>
+    <style>
+    /* Logout Button */
+    .fixed_logout {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
 
+    .diva {
+        border-radius: 24px;
+        background-color: #f20808;
+        color: #fff;
+        white-space: nowrap;
+        padding: 9px 37px;
+        font: 700 22px 'Bai Jamjuree', sans-serif;
+    }
 
-    <section class="main-container">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-        <div style="display: flex; flex-direction: column; align-items: flex-start;">
-          <div class="phrase-container">
-            <span>Hello,</span>
-            <span class="color">user</span>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: flex-end;">
-          <div style="margin-top: 30px;">
-            <span style="font-family: 'Roboto Mono', sans-serif; color: #6A4B8F; font-weight: 700; font-size: 40px;">Points: 1000</span>
-          </div>
-          <div style="margin-top: 20px;">
-            <span style="font-family: 'Roboto Mono', sans-serif; color: #F2E908; font-weight: 700; font-size: 30px;">Refill points</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    /* Card */
+    .card {
+        border-color: #1d1d1d;
+    }
+
+    .card-body {
+        background-color: #1d1d1d;
+    }
+
+    .card-title {
+        font-family: 'Blooming Elegant Sans', sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .card-text {
+        font-family: 'Orev SemiLight', sans-serif;
+        font-size: 20px;
+    }
+
+    .card-buy-button {
+        background-color: #F2E908;
+        color: #6A4B8F;
+        border-radius: 24px;
+        padding: 9px 37px;
+        font: 700 22px 'Bai Jamjuree', sans-serif;
+    }
+
+    .float-right {
+        margin-left: 190px;
+    }
+    /* greeting */
+    .greeting-prefix {
+        font-family: 'Roboto Mono', sans-serif;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 40px;
+    }
+
+    .username {
+        font: 'Roboto Mono', sans-serif;
+        color: #6A4B8F;
+        font-weight: 700;
+        font-size: 40px;
+    }
     
-    <section>
-      <div style="border-radius: 40px; background-color: #1d1d1d; padding: 50px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); margin: 675px;">
-        <div class="div-2">
-          <img loading="lazy" srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=300 300w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=500 500w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=600 600w" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=300" class="img" style="width: 300px; height: auto;">
+</style>
+</head>
+
+<body>
+<?php include "header.html"; ?>
+
+<div class="container mt-5">
+    <!-- Greeting -->
+    <div class="row">
+        <div class="col-12 mb-3">
+            <h3>
+                <span class="greeting-prefix">Hello,</span>
+                <span class="username">
+                    <?php echo isset($_SESSION["username"])
+                        ? htmlspecialchars(
+                            $_SESSION["username"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        )
+                        : "Visitor"; ?>
+                </span>
+            </h3>
         </div>
-        <div class="div-3">
-          <br>
-          <div class="div-4" style="font-family: 'Blooming Elegant Sans', sans-serif; font-weight: 700; font-size: 22px;">All day pass P600</div>
-          <Br>
-          <div class="div-5" style="font-family: 'Orev SemiLight', sans-serif; font-size: 20px;"> Inclusive of admission and unlimited use of the<br />  Park's major and kiddie rides </div>
-          <Br>
-          <button class="div-6" style="
-            background-color: #F2E908;
-            color: #6A4B8F;
-            border-radius: 24px;
-            padding: 9px 37px;
-            font: 700 22px Bai Jamjuree, sans-serif;
-            margin-left: 190px;
-          ">Buy</button>
-        </div>
-      </div>
-      </div>
-    </section>
-    
-    <section>
-      <div style="border-radius: 40px; background-color: #1d1d1d; padding: 50px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); margin: 675px;">
-        <div class="div-2">
-          <img loading="lazy" srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=300 300w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=500 500w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=600 600w" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=300" class="img" style="width: 300px; height: auto;">
-        </div>
-        <div class="div-3">
-          <<br>
-          <div class="div-4" style="font-family: 'Blooming Elegant Sans', sans-serif; font-weight: 700; font-size: 22px;">All day pass P600</div>
-          <Br>
-          <div class="div-5" style="font-family: 'Orev SemiLight', sans-serif; font-size: 20px;"> Inclusive of admission and unlimited use of the<br />  Park's major and kiddie rides </div>
-          <Br>
-          <button class="div-6" style="
-            background-color: #F2E908;
-            color: #6A4B8F;
-            border-radius: 24px;
-            padding: 9px 37px;
-            font: 700 22px Bai Jamjuree, sans-serif;
-            margin-left: 190px;
-          ">Buy</button>
-        </div>
-      </div>
-      </div>
-    </section>
-    
-    <section>
-      <div style="border-radius: 40px; background-color: #1d1d1d; padding: 50px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); margin: 675px;">
-        <div class="div-2">
-          <img loading="lazy" srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=300 300w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=500 500w, https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=600 600w" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ed3b557d784d877cbe8a68f50865649111b70ba538116b4667f7f8e4e5c62cdc?apiKey=3955a215049b45728fdd47b5e4eefa70&width=300" class="img" style="width: 300px; height: auto;">
-        </div>
-        <div class="div-3">
-        <br>
-          <div class="div-4" style="font-family: 'Blooming Elegant Sans', sans-serif; font-weight: 700; font-size: 22px;">All day pass P600</div>
-          <Br>
-          <div class="div-5" style="font-family: 'Orev SemiLight', sans-serif; font-size: 20px;"> Inclusive of admission and unlimited use of the<br />  Park's major and kiddie rides </div>
-          <Br>
-          <button class="div-6" style="
-            background-color: #F2E908;
-            color: #6A4B8F;
-            border-radius: 24px;
-            padding: 9px 37px;
-            font: 700 22px Bai Jamjuree, sans-serif;
-            margin-left: 190px;
-          ">Buy</button>
-        </div>
-      </div>
-      </div>
-    </section>
-    
-    <div style="
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    display: flex;
-    justify-content: flex-end;
-  ">
-      <button class="diva" type="submit" name="logout" onclick="window.location.href='welcome.php'" style="
-      border-radius: 24px;
-      background-color: #f20808;
-      color: #fff;
-      white-space: nowrap;
-      padding: 9px 37px;
-      font: 700 22px Bai Jamjuree, sans-serif;
-    ">Logout</button>
     </div>
-  </body>
+
+    <!-- Carousel -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="static/JungleLog.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First Slide Label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="static/SpaceShuttle.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second Slide Label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="static/EKstreme.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third Slide Label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    
+    <!-- Cards -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="static/ERA-00.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">All Day Pass P600</h4>
+                    <p class="card-text">Inclusive of admission and unlimited use of the Park's major and kiddie rides
+                        Inclusive of admission and unlimited use of the Park's major and kiddie rides</p>
+                    <div class="float-right">
+                        <button class="card-buy-button">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="static/ERA-00.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">All Day Pass P600</h4>
+                    <p class="card-text">Inclusive of admission and unlimited use of the Park's major and kiddie rides
+                        Inclusive of admission and unlimited use of the Park's major and kiddie rides</p>
+                    <div class="float-right">
+                        <button class="card-buy-button">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="static/ERA-00.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">All Day Pass P600</h4>
+                    <p class="card-text">Inclusive of admission and unlimited use of the Park's major and kiddie rides
+                        Inclusive of admission and unlimited use of the Park's major and kiddie rides</p>
+                    <div class="float-right">
+                        <button class="card-buy-button">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<!-- Display logout button only if user is logged in -->
+<?php if (isset($_SESSION["username"])): ?>
+    <form action="home.php" method="post" class="fixed_logout">
+        <button class="diva" type="submit" name="logout">Logout</button>
+    </form>
+<?php endif; ?>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

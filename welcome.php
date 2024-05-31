@@ -27,7 +27,7 @@ $loggedIn = isset($_SESSION["username"]);
     <div class="actions-container">
         <div class="inner">
             <button onclick="redirectToLogin()" type="button" class="login-button">Login</button>
-            <button onclick="location.href='signup.php'" type="button" class="signup-button">Signup</button>
+            <button onclick="redirectToSignup()" type="button" class="signup-button">Signup</button>
         </div>
     </div>
 </section>
@@ -35,15 +35,7 @@ $loggedIn = isset($_SESSION["username"]);
 <script>
     // Set a JavaScript variable to indicate whether the user is logged in or not
     var loggedIn = <?php echo $loggedIn ? "true" : "false"; ?>;
-
-    function redirectToLogin() {
-        // Redirect based on whether the user is logged in or not
-        if (loggedIn) {
-            window.location.href = 'home.php';
-        } else {
-            window.location.href = 'login.php';
-        }
-    }
 </script>
+<script src="static/js/Wel_redirect.js"></script>
   </body>
 </html>

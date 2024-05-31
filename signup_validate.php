@@ -1,81 +1,116 @@
 <?php
 /* Function for data Sign-up validation */
 function validateData($data)
-{ // Function to validate data / clean data
+{
+    // Remove leading and trailing spaces
     $data = trim($data);
+    // Remove slashes added by magic quotes
     $data = stripslashes($data);
+    // Convert special characters to HTML entities
     $data = htmlspecialchars($data);
     return $data;
 }
 
-$servername = "localhost"; // default servername is localhost
-$username = "root"; // default username is root
-$password = ""; // default password is empty
-$dbname = "sk_acc"; // Change this to your database name according to your database name: Schema_name
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "sk_acc";
 
-$conn = new mysqli($servername, $username, $password, $dbname); // establish connection to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) { // check if connection is successful
+if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-/* Creates table for schema if not exist */
+// Create account table if it doesn't exist
 $sql_create_table = "CREATE TABLE IF NOT EXISTS account (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
 )";
 $conn->query($sql_create_table);
 
-/* Get data from form */
+// Get data from form
 $username = validateData($_POST['username']);
 $password = validateData($_POST['password']);
 $confirm_password = validateData($_POST['confirm_password']);
+$email = validateData($_POST['email']);
 
-/* Check if any field is empty */
-if (empty($username) || empty($password) || empty($confirm_password)) {
-    /* Alert the user that there is an empty field */
+// Check if any field is empty
+if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
     header("Location: signup.php?error=empty_field");
     exit();
 }
 
-/* Check if password and confirm_password are the same */
+// Check if password and confirm_password are the same
 if ($password != $confirm_password) {
-    /* Alert the user if the password is not match then return back to signup */
     header("Location: signup.php?error=password_mismatch");
     exit();
 } else if (strlen($password) < 8) {
-    /* Alert the user if password is less than 8 characters */
     header("Location: signup.php?error=password_too_short");
     exit();
 } else if (preg_match_all('/[A-Z]/', $password) < 1) {
-    /* Alert the user if password does not contain at least one uppercase letter */
     header("Location: signup.php?error=password_no_uppercase");
     exit();
 } else if (preg_match_all('/[^A-Za-z0-9]/', $password) < 1) {
-    /* Alert the user if password does not contain at least one special character */
     header("Location: signup.php?error=password_no_special_char");
     exit();
-} else {
-    $password = password_hash($password, PASSWORD_DEFAULT); // hash the password
 }
 
-/* Check if username already exists */
-$sql = "SELECT * FROM account WHERE username='$username'";
-$result = $conn->query($sql); // execute the query to the database
+// Hash the password
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-if ($result->num_rows > 0) { // check if the query has a result
+// Check if username already exists
+$sql = "SELECT * FROM account WHERE username=?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
     header("Location: signup.php?error=username_already_exists");
     exit();
 }
+$stmt->close();
 
-/* Insert data into account table */
-$sql = "INSERT INTO account (username, password) VALUES ('$username', '$password')";
-$conn->query($sql);
+// Check if email already exists
+$sql = "SELECT * FROM account WHERE email=?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
+    header("Location: signup.php?error=email_already_exists");
+    exit();
+}
+$stmt->close();
 
-echo "<script>alert('Sign up successful!')</script>";
-$conn->close(); // close the connection
+// Insert data into account table
+// Prepare the SQL statement
+$sql = "INSERT INTO account (username, password, email) VALUES (?, ?, ?)";
 
-header("Location: login.php"); // redirect to login page
+// Prepare the statement
+$stmt = $conn->prepare($sql);
+
+// Bind the parameters to the statement
+// s - string
+// $username, $hashed_password, $email - values to be inserted
+$stmt->bind_param("sss", $username, $hashed_password, $email);
+
+// Execute the statement
+$stmt->execute();
+
+// Check if there was an error in executing the query
+if ($stmt->errno) {
+    echo "Error: " . $stmt->error;
+} else {
+    echo "<script>alert('Sign up successful!')</script>";
+    header("Location: login.php");
+    exit();
+}
+
+$stmt->close();
+$conn->close();
 ?>
 

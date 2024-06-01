@@ -2,54 +2,69 @@
 
 /* Function for data validation */
 function validateData($data) {
-     $data = trim($data); // Remove whitespace from the start and end of the string
-     $data = stripslashes($data); // Remove backslashes
+    $data = trim($data); // Remove whitespace from the start and end of the string
+    $data = stripslashes($data); // Remove backslashes
     $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8'); // Convert special characters to HTML entities
     return $data;
 }
 
- // The database server we are connecting to
- $servername = "localhost"; // default servername is localhost
- $username = "root"; // default username is root
- $password = ""; // default password is empty
- $dbname = "sk_acc"; // Change this to your database name according to your database name: Schema_name
+$servername = "localhost"; // Default servername is localhost
+$username = "root"; // Default username is root
+$password = ""; // Default password is empty
+$dbname = "sk_acc"; // Change this to your database name according to your database name: Schema_name
 
- $conn = new mysqli($servername, $username, $password, $dbname); // Create connection
+$conn = new mysqli($servername, $username, $password, $dbname); // Create connection
 
- if ($conn->connect_error) { // Check connection to the database
+if ($conn->connect_error) { // Check connection to the database
     die("Connection failed: " . $conn->connect_error);
 }
 
  /* Login */
-$username = validateData($_POST['username']);
+$login_input = validateData($_POST['username']); // Username or email
 $password = validateData($_POST['password']);
 
-// Check if the username and password fields are not empty
-if (empty($username) || empty($password)) {
+// Check if the username/email and password fields are not empty
+if (empty($login_input) || empty($password)) {
     header("Location: login.php?error=empty_field");
     exit();
 }
 
- // Select all columns from the account table where the username matches the entered username
- $sql = "SELECT * FROM account WHERE username='$username'";
- $result = $conn->query($sql); // Execute the query to the database
+// Select all columns from the account table where the username or email matches the entered value
+$stmt = $conn->prepare("SELECT * FROM account WHERE username=? OR email=?");
+$stmt->bind_param("ss", $login_input, $login_input); // "s" indicates the variable type is string
+$stmt->execute();
+$result = $stmt->get_result();
 
- if ($result->num_rows > 0) { // Check if the query has a result
-     $row = $result->fetch_assoc(); // Fetch the result as an associative array
-     if (password_verify($password, $row['password'])) { // Check if the password is correct using password_verify()
-        session_start();
-        $_SESSION['username'] = $username;
-        header("Location: home.php");
-        exit();
+
+    // Check if a user with the given username/email and password exists
+    if ($result->num_rows > 0) {
+        // Retrieve the user's row from the result set
+        $row = $result->fetch_assoc();
+        // Verify the entered password against the hashed password in the database
+        if (password_verify($password, $row['password'])) {
+            // Start a new session
+            session_start();
+            // Store the username in the session
+            $_SESSION['username'] = $row['username'];
+            // Redirect the user to the home page
+            header("Location: home.php");
+            exit();
+        } else {
+            // Redirect the user to the login page with an error message
+            header("Location: login.php?error=incorrect_password");
+            exit();
+        }
     } else {
-        header("Location: login.php?error=incorrect_password");
+        // Redirect the user to the login page with an error message
+        header("Location: login.php?error=user_not_found");
         exit();
     }
-} else {
-    header("Location: login.php?error=user_not_found");
-    exit();
-}
 
-
- $conn->close(); // Close the connection
+    
+    // Close the prepared statement
+    // This is important to free up system resources
+    // and prevent memory leaks
+    // See: https://www.php.net/manual/en/mysqli-stmt.close.php
+    $stmt->close();
+$conn->close(); // Close the connection
 ?>

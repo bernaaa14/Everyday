@@ -12,7 +12,7 @@ if (isset($_POST["logout"])) {
     exit();
 }
 
-$greeting = "Hello, Visitor";
+$greeting = "Hello, Guest";
 if (isset($_SESSION["username"])) {
     $greeting =
         "Hello, " .
@@ -112,7 +112,7 @@ if (isset($_SESSION["username"])) {
                             ENT_QUOTES,
                             "UTF-8"
                         )
-                        : "Visitor"; ?>
+                        : "Guest"; ?>
                 </span>
             </h3>
         </div>
@@ -168,7 +168,7 @@ if (isset($_SESSION["username"])) {
                     <p class="card-text">Inclusive of admission and unlimited use of the Park's major and kiddie rides
                         Inclusive of admission and unlimited use of the Park's major and kiddie rides</p>
                     <div class="float-right">
-                        <button class="card-buy-button">Buy</button>
+                        <a class="card-buy-button" href="booking.php">Buy</a>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@ if (isset($_SESSION["username"])) {
                     <p class="card-text">Inclusive of admission and unlimited use of the Park's major and kiddie rides
                         Inclusive of admission and unlimited use of the Park's major and kiddie rides</p>
                     <div class="float-right">
-                        <button class="card-buy-button">Buy</button>
+                        <a class="card-buy-button" href="booking.php">Buy</a>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@ if (isset($_SESSION["username"])) {
                     <p class="card-text">Inclusive of admission and unlimited use of the Park's major and kiddie rides
                         Inclusive of admission and unlimited use of the Park's major and kiddie rides</p>
                     <div class="float-right">
-                        <button class="card-buy-button">Buy</button>
+                        <a class="card-buy-button" href="booking.php">Buy</a>
                     </div>
                 </div>
             </div>

@@ -33,6 +33,22 @@
         <h3 class="highlight-text2">Fantasy Garden</h3>
         <p>Relax in the beautiful surroundings of our Fantasy Garden, a perfect spot for families to unwind and enjoy nature.</p>
       </div>
+      <div class="attraction-item">
+        <h3 class="highlight-text1">The Swan Lake</h3>
+        <p>Enjoy a serene, slow ride with a special other. Guaranteed to set-up the perfect atmosphere for a beautiful moment~.</p>
+      </div>
+      <div class="attraction-item">
+        <h3 class="highlight-text2">Ferris Wheel</h3>
+        <p>A must go to attraction for everyone! Ride the 69th tallest ferris wheel in the world and get a sky high view of the city.</p>
+      </div>
+      <div class="attraction-item">
+        <h3 class="highlight-text1">Sweet Haunted House</h3>
+        <p>Take a trip at the spooktastic chocological sweets themed horror attraction! Those brave enough to get through the delightful horrors can treat themselves to some sweet treats and souvenirs.</p>
+      </div>
+      <div class="attraction-item">
+        <h3 class="highlight-text2">Crash Course</h3>
+        <p>Ride a vehicle and enjoy the mayhem of ramming into friends and strangers alike in the Crash Course.</p>
+      </div>
     </section>
 
     <section class="actions-container">

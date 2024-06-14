@@ -1,0 +1,308 @@
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #6A4B8F;
+            color: #fff;
+        }
+
+        .step.active {
+            border-bottom: 2px solid #F2E908;
+        }
+
+        .review-payment {
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .review-table th, .review-table td {
+            border: 1px solid #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .total-amount {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .guest-details {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .nav-container {
+            margin-top: 20px;
+        }
+
+        .guest-nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #6A4B8F;
+            border-radius: 10px;
+        }
+
+        .guest-nav li {
+            margin: 10px;
+        }
+
+        .guest-nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .guest-form-container {
+            margin-top: 20px;
+        }
+
+        .guest-form {
+            display: none;
+        }
+
+        .guest-form.active {
+            display: block;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s;
+        }
+
+        .modal-content {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .modal .close-button,
+        .modal .back-button,
+        .modal .continue-button {
+            background-color: #F2E908;
+            color: #6A4B8F;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .close-button {
+            float: right;
+        }
+
+        .modal.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .modal:not(.hidden) {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            background-color: #F2E908;
+            color: #6A4B8F;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .buttons button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #6A4B8F;
+            color: #fff;
+        }
+
+        .step.active {
+            border-bottom: 2px solid #F2E908;
+        }
+
+        .review-payment {
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .review-table th, .review-table td {
+            border: 1px solid #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .total-amount {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .guest-details {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .nav-container {
+            margin-top: 20px;
+        }
+
+        .guest-nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #6A4B8F;
+            border-radius: 10px;
+        }
+
+        .guest-nav li {
+            margin: 10px;
+        }
+
+        .guest-nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .guest-form-container {
+            margin-top: 20px;
+        }
+
+        .guest-form {
+            display: none;
+        }
+
+        .guest-form.active {
+            display: block;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s;
+        }
+
+        .modal-content {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .modal .close-button,
+        .modal .back-button,
+        .modal .continue-button {
+            background-color: #F2E908;
+            color: #6A4B8F;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .close-button {
+            float: right;
+        }
+
+        .modal.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .modal:not(.hidden) {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            background-color: #F2E908;
+            color: #6A4B8F;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .buttons button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }

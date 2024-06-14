@@ -1,0 +1,83 @@
+.fixed_logout {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.diva {
+    border-radius: 24px;
+    background-color: #f20808;
+    color: #fff;
+    white-space: nowrap;
+    padding: 9px 37px;
+    font: 700 22px 'Bai Jamjuree', sans-serif;
+}
+
+.review-table th, .review-table td {
+    color: white;
+}
+
+/* Card */
+.card {
+    border-color: #1d1d1d;
+}
+
+.card-body {
+    background-color: #1d1d1d;
+}
+
+.card-title {
+    font-family: 'Blooming Elegant Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.card-text {
+    font-family: 'Orev SemiLight', sans-serif;
+    font-size: 20px;
+}
+
+.card-buy-button {
+    background-color: #F2E908;
+    color: #6A4B8F;
+    border-radius: 24px;
+    padding: 9px 37px;
+    font: 700 22px 'Bai Jamjuree', sans-serif;
+}
+
+.float-right {
+    float: right;
+}
+
+/* Greeting */
+.greeting-prefix {
+    font-family: 'Roboto Mono', sans-serif;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.username {
+    font: 'Roboto Mono', sans-serif;
+    color: #6A4B8F;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.carousel {
+    width: 100%;
+    height: auto;
+}
+
+.badge-over-image {
+    position: relative;
+    display: inline-block;
+}
+
+.badge-over-image .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

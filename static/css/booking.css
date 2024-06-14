@@ -1,0 +1,157 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+body{
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #222;
+    margin: 0;
+    padding: 0;
+}
+    .step-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+
+    .step {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 2px solid #6A4B8F;
+        color: #fff;
+    }
+
+    .step.active {
+        border-bottom: 2px solid #F2E908;
+    }
+
+    .ticket-selection {
+        padding: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .select-button,.proceed-button {
+        float: right;
+        font-family: 'Bai Jamjuree', sans-serif;
+        padding: 10px 20px;
+        background-color: #F2E908;
+        color: #6A4B8F;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .ticket-details.hidden,
+    .ticket-table.hidden,
+    .total-amount.hidden,
+    .proceed-button.hidden {
+        display: none;
+    }
+
+    .ticket-table {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ticket-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ticket-name, .ticket-price, .ticket-quantity, .ticket-total {
+        flex: 1;
+        text-align: center;
+        color: #fff;
+    }
+
+    .ticket-quantity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .ticket-quantity button {
+        background-color: #F2E908;
+        color: #6A4B8F;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .total-amount {
+        margin-top: 10px;
+        text-align: right;
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .proceed-button {
+        float: right;
+        padding: 10px 20px;
+        background-color: #F2E908;
+        color: #6A4B8F;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s;
+    }
+
+    .modal-content {
+        background: #333;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 400px;
+        max-width: 90%;
+    }
+
+    .modal .close-button,
+    .modal .back-button,
+    .modal .continue-button {
+        background-color: #F2E908;
+        color: #6A4B8F;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Bai Jamjuree', sans-serif;
+    }
+
+    .modal .close-button {
+        float: right;
+    }
+
+    .modal.hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .modal:not(.hidden) {
+        visibility: visible;
+        opacity: 1;
+    }

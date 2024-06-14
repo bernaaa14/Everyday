@@ -24,7 +24,12 @@ $(document).ready(function() {
     });
 
     $('.continue-button').click(function() {
-        window.location.href = 'paymentGateway.php';
+        window.location.href = 'completion.php';
+    });
+
+    $('.continue-button').click(function() {
+        console.log("Continue button clicked");
+        window.location.href = 'completion.php';
     });
 
     $('#cancel-button').click(function() {
@@ -32,15 +37,14 @@ $(document).ready(function() {
     });
 
     // Guest navigation
-    $(document).ready(function() {
-        $(".guest-nav a").click(function(e) {
-            e.preventDefault();
-            var target = $(this).attr("href");
-            $(".guest-form").removeClass("active");
-            $(target).addClass("active");
-        });
+    $(".guest-nav a").click(function(e) {
+        e.preventDefault();
+        var target = $(this).attr("href");
+        $(".guest-form").removeClass("active");
+        $(target).addClass("active");
     });
 
     // Initially display the first guest form
     $('.guest-form').first().addClass('active');
 });
+

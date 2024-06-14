@@ -1,4 +1,10 @@
 <?php
+session_start();
+include 'db_connection.php';
+
+
+print_r($_POST);
+
 
 /* Function for data validation */
 function validateData($data) {
@@ -8,16 +14,7 @@ function validateData($data) {
     return $data;
 }
 
-$servername = "localhost"; // Default servername is localhost
-$username = "root"; // Default username is root
-$password = ""; // Default password is empty
-$dbname = "sk_acc"; // Change this to your database name according to your database name: Schema_name
 
-$conn = new mysqli($servername, $username, $password, $dbname); // Create connection
-
-if ($conn->connect_error) { // Check connection to the database
-    die("Connection failed: " . $conn->connect_error);
-}
 
  /* Login */
 $login_input = validateData($_POST['username']); // Username or email
@@ -47,7 +44,7 @@ $result = $stmt->get_result();
             // Store the username in the session
             $_SESSION['username'] = $row['username'];
             // Redirect the user to the home page
-            header("Location: home.php");
+            header("Location: booking.php");
             exit();
         } else {
             // Redirect the user to the login page with an error message

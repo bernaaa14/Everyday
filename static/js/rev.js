@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     $('.continue-button').click(function() {
-        window.location.href = 'paymentGateway.php';
+        $("#bookingForm").submit();
     });
 
     $('#cancel-button').click(function() {

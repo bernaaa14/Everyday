@@ -3,6 +3,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+
 if (!isset($_SESSION['username'])) {
     header('Location: login.php');
     exit();
@@ -162,7 +163,7 @@ function formatDate($date) {
 
         // JavaScript to handle the place order button
         document.getElementById('place-order-button').addEventListener('click', function () {
-            window.location.href = 'place_order.php'; // Redirect to place order page
+            window.location.href = 'completion.php'; // Redirect to place order page
         });
 
         // JavaScript to handle the modal
@@ -171,5 +172,6 @@ function formatDate($date) {
         });
     </script>
 </section>
+
 </body>
 </html>

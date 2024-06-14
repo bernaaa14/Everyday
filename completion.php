@@ -81,7 +81,7 @@ if (!isset($_SESSION["username"])) {
             <p>Thank you for your purchase. Your order has been completed successfully.</p>
             <p>We have sent a confirmation email to your registered email address with the details of your order.</p>
             <p>You can view your order history by clicking the button below.</p>
-            <a class="my-orders-button" href="my_orders.php">My Orders</a>
+            <a class="my-orders-button" href="order_summary.php">My Orders</a>
         </div>
     </div>
 </body>

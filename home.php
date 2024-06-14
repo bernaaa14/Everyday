@@ -11,13 +11,6 @@ if (isset($_POST["logout"])) {
     header("Location: login.php");
     exit();
 }
-
-$greeting = "Hello, Guest";
-if (isset($_SESSION["username"])) {
-    $greeting =
-        "Hello, " .
-        htmlspecialchars($_SESSION["username"], ENT_QUOTES, "UTF-8");
-}
 ?>
 
 <!DOCTYPE html>
@@ -27,96 +20,12 @@ if (isset($_SESSION["username"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/style.css">
-    <style>
-    /* Logout Button */
-    .fixed_logout {
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .diva {
-        border-radius: 24px;
-        background-color: #f20808;
-        color: #fff;
-        white-space: nowrap;
-        padding: 9px 37px;
-        font: 700 22px 'Bai Jamjuree', sans-serif;
-    }
-
-    /* Card */
-    .card {
-        border-color: #1d1d1d;
-    }
-
-    .card-body {
-        background-color: #1d1d1d;
-    }
-
-    .card-title {
-        font-family: 'Blooming Elegant Sans', sans-serif;
-        font-weight: 700;
-        font-size: 22px;
-    }
-
-    .card-text {
-        font-family: 'Orev SemiLight', sans-serif;
-        font-size: 20px;
-    }
-
-    .card-buy-button {
-        background-color: #F2E908;
-        color: #6A4B8F;
-        border-radius: 24px;
-        padding: 9px 37px;
-        font: 700 22px 'Bai Jamjuree', sans-serif;
-    }
-
-    .float-right {
-        margin-left: 190px;
-    }
-    /* greeting */
-    .greeting-prefix {
-        font-family: 'Roboto Mono', sans-serif;
-        color: #FFFFFF;
-        font-weight: 700;
-        font-size: 40px;
-    }
-
-    .username {
-        font: 'Roboto Mono', sans-serif;
-        color: #6A4B8F;
-        font-weight: 700;
-        font-size: 40px;
-    }
-    
-</style>
+    <link rel="stylesheet" href="static/css/home.css">
 </head>
 
 <body>
 <?php include "header.html"; ?>
-
-<div class="container mt-5">
-    <!-- Greeting -->
-    <div class="row">
-        <div class="col-12 mb-3">
-            <h3>
-                <span class="greeting-prefix">Hello,</span>
-                <span class="username">
-                    <?php echo isset($_SESSION["username"])
-                        ? htmlspecialchars(
-                            $_SESSION["username"],
-                            ENT_QUOTES,
-                            "UTF-8"
-                        )
-                        : "Guest"; ?>
-                </span>
-            </h3>
-        </div>
-    </div>
+<?php include 'greeting.php'; ?>
 
     <!-- Carousel -->
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
